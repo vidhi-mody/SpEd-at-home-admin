@@ -11,29 +11,57 @@
     />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
     <div>
-      <table class="table table-dark">
+      <h2>General Details</h2>
+      <p>
+        Name: <%= `${user.firstName} ${user.lastName}` %>
+        <br />
+        Age: <%= user.age %>
+        <br />
+        Reason for Referral: <%= user.reasonForReferral.join(', ') %>
+      </p>
+    </div>
+    <hr />
+    <% if(user.answers) { %>
+    <div>
+      <h2>Academic</h2>
+      <%for(const [section, answers] of Object.entries(user.answers)) { %>
+      <div class="ml-3">
+        <h3><%= section %></h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Question</th>
+              <th scope="col">Response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(const { question, response} of answers) { %>
+            <tr>
+              <td><%= question %></td>
+              <td><%= response %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <% } %>
+    </div>
+    <% } %>
+    <div>
+      <h2>Parental Proficiency</h2>
+      <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Age</th>
-            <th scope="col">Referral Reason</th>
-            <th scope="col">Details</th>
+            <th scope="col">Field</th>
+            <th scope="col">Value</th>
           </tr>
         </thead>
         <tbody>
-          <% for (const [idx, user] of users.entries()) { %>
+          <% for(const [key, value] of Object.entries(user.parent)) { %>
           <tr>
-            <th scope="row"><%= idx + 1 %></th>
-            <td><%= user.firstName %></td>
-            <td><%= user.lastName %></td>
-            <td><%= user.age %></td>
-            <td><%= user.reasonForReferral.join(', ') %></td>
-            <td><a href="/<%= user.userId %>">More</a></td>
+            <td><%= key %></td>
+            <td><%= value %></td>
           </tr>
           <% } %>
         </tbody>
