@@ -46,6 +46,14 @@
         </table>
       </div>
       <% } %>
+      <div class="ml-3">
+        <h3>Score</h3>
+        <ul>
+        <% for(const [k, v] of Object.entries(user.score)) { %>
+          <li><span class="text-info"><%= k %></span>: <%= v %></li>
+        <% } %>
+        </ul>
+      </div>
     </div>
     <% } %>
     <div>

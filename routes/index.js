@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:userId', async (req, res, next) => {
-  const user = await User.findOne({ userId: req.params.userId });
+  const user = await User.findOne({ userId: req.params.userId }).lean();
 
   res.render('user', { title: 'Questionnaire', user });
 });
