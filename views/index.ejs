@@ -18,6 +18,8 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Partner Org</th>
+            <th scope="col">Form Filled by</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">Age</th>
@@ -29,6 +31,12 @@
           <% for (const [idx, user] of users.entries()) { %>
           <tr>
             <th scope="row"><%= idx + 1 %></th>
+            <td>
+              <%= user.partnerOrganization %>
+            </td>
+            <td>
+              <%= user.referee %>
+            </td>
             <td><%= user.firstName %></td>
             <td><%= user.lastName %></td>
             <td><%= user.age %></td>
